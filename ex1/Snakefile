@@ -1,0 +1,25 @@
+slots = list(range(3))
+
+rule reduce:
+  input: expand("transf-{slot}.pkl", slot=slots)
+  output: "reduced.pkl"
+
+  shell:
+   "python3 job.py reduce --input {input} --output {output}"
+
+rule produce:
+  output: "prod-{slot}.pkl"
+
+  shell:
+   "python3 job.py produce --output {output} --config {wildcards.slot} --waited-time 1"
+
+
+rule transform:
+  input: "prod-{slot}.pkl"
+  output: "transf-{slot}.pkl"
+
+  shell:
+   "python3 job.py transform --input {input} --output {output} --waited-time 1"
+
+
+
