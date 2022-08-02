@@ -1,0 +1,12 @@
+##################################
+## Remote storage configuration ##
+##################################
+sftp_server: "192.135.24.192"
+sftp_prefix: "/home/cloudftp/"
+
+##################################
+## Enviornment setup            ##
+##################################
+environment:
+  XDG_CACHE_HOME: "/tmp/.cache" 
+
